@@ -1,6 +1,11 @@
-.blacksuit {
-    color: green red green blue)
+body {
+    font-family: sans-serif;
 }
-.red-suit {
-    color: red;
+
+h1 {
+    text-align: center;
+}
+
+ul {
+    text-align: center;
 }

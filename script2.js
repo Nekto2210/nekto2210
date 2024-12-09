@@ -318,20 +318,167 @@
 //     console.log(miramarenHotel.availableRooms(),
 //     miramarenHotel.availablePercent());
 
-class Rectangle {
-    constructor(width, height) {
-        width = width;
-        height = height;
+// class Rectangle {
+//     constructor(width, height) {
+//         width = width;
+//         height = height;
+//     }
+//     square(width,height) {
+//       console.log(width,height);
+//       return width*height;
+//     }
+//     perimeter(width,height) {
+//       return 2*(width+height);
+//     }
+// }
+// let rect1 = new Rectangle(20,30);
+//  console.log(rect1.square(), rect1.perimeter());
+//  let rect2 = new Rectangle(78,92);
+//  console.log(rect2.square(),rect2.perimeter());
+
+//  class Rectangle {
+//     constructor(width, height) {
+//         this.width = width;
+//         this.height = height;
+//     }
+//     square() {
+//       return this.width*this.height;
+//     }
+//     perimeter() {
+//       return 2*(this.width+this.height);
+//     }
+// }
+// let rect1 = new Rectangle(20,30);
+//  console.log(rect1.square(), rect1.perimeter());
+//  let rect2 = new Rectangle(78,92);
+//  console.log(rect2.square(),rect2.perimeter());
+
+ class Human {
+    #id
+    constructor(firstname, lastname, birthday) {
+    this.firstname = firstname;
+    this.lastname = lastname;
+    this.birthday = birthday;
+    this.#id = Math.floor (Math.random()*10e6);
+    }
+ 
+ showInfo() {
+    console.log(this.firstname + " " + this.lastname);
+ }
+ showAge() {
+    const deltaTime = Date.now() -
+    Date.parse(this.birthday);
+    const age = Math.floor(deltaTime /
+        (365*24*60*60*1000));
+        console.log(this.firstname + " " +
+            this.lastname + " is " + age + " years old. ");
+        }
+get id(){
+            return this.#id;
+ }
+set id(value){
+            this.#id = value;
 }
-square(width,height) {
-    console.log(width,height);
-    return width*height;
+toString(){
+    return this.firstname + " " + this.lastname + 
+    "is a" + this.constructor.name;
+ }
 }
-perimeter(width,height) {
-    return 2*(width+height);
+const john = new Human("John","Smith","09-17-2003")
+console.log(john.firstname,john.lastname);
+john.firstname = "Billy";
+john.lastname = "Thomas";
+console.log(john.firstname, john.lastname)
+john.showAge();
+console.log(john.id);
+john.id = 1;
+console.log(john.id);
+
+class Teacher extends Human{
+    constructor(firstname,lastname, birthday,
+    subjects = []){
+    super(firstname, lastname, birthday);
+    this.subjects = subjects;
 }
+showSubjects() {
+    console.log(this.firstname + " " +
+    this.lastname + "can teach you" +
+    this.subjects.join(","));
+    }
 }
-let rect1 = new Rectangle(20,30);
- console.log(rec1.square(), rect1.perimeter());
- let rect2 = new Rectangle(78,92);
- console.log(rect2.square(),rect2.perimeter());
+
+const kate = new Teacher("Kate", "Lowdell",
+    "07/15/1986",
+    ["biology", "geography"]);
+
+kate.showInfo();
+kate.showAge();
+kate.showSubjects();
+
+
+
+
+class ITMentor extends Teacher{
+    constructor(firstname,lastname, birthday,
+    subjects = [], level){
+    super(firstname, lastname, birthday, subjects);
+    this.level = level;
+}
+
+showSubjects() {
+    console.log("width"+this.firstname + " " +
+    this.lastname +
+    "you can get such IT skills: "+
+    this.subjects.join(","));
+    document.write("<p>With"+this.firstname+
+        " " + this.lastname +
+        " you can get such IT skills:<p><ol><li>" +
+        this.subjects.join("<li>")+
+        "</ol>");   
+}
+
+showLevel() {
+    console.log(this.firstname + " " +
+    this.lastname + "has level" +
+    this.level);
+    }
+}
+
+const andrew = new ITMentor("Andrew", "Phillipov",
+    "07/15/1986", ["HTML", "CSS", "JavaScript", "React", "Angular"], "Senior");
+
+andrew.showInfo();
+andrew.showAge();
+andrew.showSubjects();
+andrew.showLevel();
+
+document.write("Class Human: "+john + "<br>");
+document.write("Class Teacher: "+kate + "<br>");
+document.write("Class ITMentor: "+andrew + "<br>");
+
+console.log(john instanceof Human);
+console.log(kate instanceof Human);
+console.log(kate instanceof Human);
+console.log(andrew instanceof Human);
+console.log(andrew instanceof Human);
+console.log(andrew instanceof Human);
+console.log(john instanceof Teacher);
+console.log(john instanceof ITMentor);
+console.log(john instanceof Array);
+
+
+class StringInfo extends String {
+    calcLetter(letter) {
+        let count = 0;
+        let index = this.indexOf(letter);
+        while(index != -1){
+            count++;
+            index = this.indexOf(letter,index+1);
+        }
+        return count;
+    }
+}
+let myStr = new StringInfo ("When the going gets tough, the toygh get going.");
+console.log('g in" "'+myStr +'" = '+ myStr.calcLetter('g'));
+console.log('going in"'+ myStr + '"=' + myStr.calcLetter('going'));
+console.log('"text" in"'+myStr +'" ='+ myStr.calcLetter('text'));

@@ -1,0 +1,136 @@
+<!-- <!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            position: relative;
+            height: 2000px;
+            margin: 0;
+        }
+        div {
+            background: navy;
+            height: 255px;
+            width: 255px;
+        }
+    </style>
+</head>
+
+<body onclick="moveStranger(event)">
+    <div id="colorBlock"></div>
+    <script>
+        //  function moveStranger(e){
+        //      stranger.style.left=e.pageX+"px";
+        //      stranger.style.top =e.pageY+"px";
+        //  }
+        // colorBlock.addEventListener("click", function(){
+        //     colorBlock.style.backgroundColor = "rgb(" +
+        //     Math.round(255*Math.random()) +
+        //     "," +
+        //     Math.round(255*Math.random()) +
+        //     "," +
+        //     Math.round(255*Math.random()) +
+        //     ")";
+        // })
+        colorBlock.addEventListener("mousemove", function(e){
+            colorBlock.style.backgroundColor = "rgb(127," +
+            e.pageX +
+            "," +
+            e.pageY +
+            ")"; 
+        })
+    </script>
+</body>
+</html>
+ -->
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+<style>
+    img {
+        height: auto;
+        width: 200px;
+    }
+</style>
+</head>
+<body onload="alert('body loaded')">
+    <img src="https://i.pinimg.com/736x/e8/8f/30/e88f3028afe762960b7a2c11837b34d1.jpg" alt="/">
+    <script>
+        document.addEventListener("DOMcontentLoaded", 
+            function() {
+                alert("DOM loaded")
+            }
+        )
+
+    </script>
+
+</body>
+</html> --> 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+<style>
+    body {
+      margin: 0;
+      position: 0;
+    }
+    #gun, #bullet, #aim {
+        position: 50%;
+    }
+    #gun {
+        background: navy;
+        height: 20px;
+        left: 0;
+        top: 50px;
+        width: 50px;
+    }
+    #bullet {
+        background: khaki;
+        height: 20px;
+        left: 30px;
+        top: 50px;
+        width: 20px;
+        z-index: -1;
+    }
+    #aim {
+        background: red;
+        height: 30px;
+        left: 200px;
+        top: 45px;
+        width: 30px; 
+    }
+</style>
+</head>
+<body onkeydown="keyHandler(event)">
+    <h1>Press space</h1>
+    <div id="gun"></div>
+    <div id="bullet"></div>
+    <div id="aim"></div>
+ <script>
+    var bulletX = 30;
+    var onFly = false;
+    function moveBullet(){
+        if(onFly){
+            bulletX = 5;
+            if(bulletX >= 200){
+                bulletX = 30;
+            }
+        }
+    }
+ </script>   
+</body>
+</html>

@@ -482,3 +482,4 @@ let myStr = new StringInfo ("When the going gets tough, the toygh get going.");
 console.log('g in" "'+myStr +'" = '+ myStr.calcLetter('g'));
 console.log('going in"'+ myStr + '"=' + myStr.calcLetter('going'));
 console.log('"text" in"'+myStr +'" ='+ myStr.calcLetter('text'));
+

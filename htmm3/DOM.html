@@ -1,0 +1,388 @@
+<!-- <!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            position: relative;
+            height: 2000px;
+            margin: 0;
+        }
+        div {
+            background: navy;
+            height: 255px;
+            width: 255px;
+        }
+    </style>
+</head>
+
+<body onclick="moveStranger(event)">
+    <div id="colorBlock"></div>
+    <script>
+        //  function moveStranger(e){
+        //      stranger.style.left=e.pageX+"px";
+        //      stranger.style.top =e.pageY+"px";
+        //  }
+        // colorBlock.addEventListener("click", function(){
+        //     colorBlock.style.backgroundColor = "rgb(" +
+        //     Math.round(255*Math.random()) +
+        //     "," +
+        //     Math.round(255*Math.random()) +
+        //     "," +
+        //     Math.round(255*Math.random()) +
+        //     ")";
+        // })
+        colorBlock.addEventListener("mousemove", function(e){
+            colorBlock.style.backgroundColor = "rgb(127," +
+            e.pageX +
+            "," +
+            e.pageY +
+            ")"; 
+        })
+    </script>
+</body>
+</html>
+ -->
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+<style>
+    img {
+        height: auto;
+        width: 200px;
+    }
+</style>
+</head>
+<body onload="alert('body loaded')">
+    <img src="https://i.pinimg.com/736x/e8/8f/30/e88f3028afe762960b7a2c11837b34d1.jpg" alt="/">
+    <script>
+        document.addEventListener("DOMcontentLoaded", 
+            function() {
+                alert("DOM loaded")
+            }
+        )
+
+    </script>
+
+</body>
+</html> --> 
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <ul id="list">
+    <li>Item 1</li>
+    <li>Item 2</li>
+    <li>Item 3</li>
+    <li>Item 4</li>
+   </ul>
+   <button onclick="addItem()">Add item</button>
+   <button onclick="insertItem()">Insert item</button>
+   <button onclick="removeItem()">Remove second item</button>
+
+<script>
+    function addItem(){
+        var newItem = document.createElement('li');
+        newItem.innerText = 'New item';
+        list.appendChild(newItem);
+    }
+    function insertItem(){
+        var firstItem = list.childNodes[0];
+        var newItem = document.createElement('li');
+        newItem.innerText = 'New item';
+        list.insertBefore(newItem, firstItem);
+    }
+    function removeItem(){
+        var n = 0;
+        var element2 = false;
+        for(var element of list.childNodes){
+            if(element.tagName == 'LI') n++;
+            if(n==2) {
+                element2 = element;
+                break;
+            }
+            }
+            if(element2) list.removeChild(element2);
+    }
+</script>
+</body>
+
+</html> -->
+
+<!-- <!doctype html> 
+<html> 
+<head> 
+ <style> 
+ body{ 
+ position: relative; 
+ } 
+ .item, .phantom { 
+ height: 30px; 
+ width: 300px; 
+ } 
+ .phantom{ 
+   position: absolute; 
+   } 
+   </style> 
+  </head> 
+  <body> 
+   <ol id='list'> 
+   <li class='item' style='background-color:gold'> 
+   </li> 
+   <li class='item' style='background-color:red'> 
+   </li> 
+   <li class='item' style='background-color:green'> 
+   </li> 
+   <li class='item' style='background-color:blue'> 
+   </li> 
+   </ol> 
+   <script> 
+   var draggedElement = false;  
+   var phantomElement = false; 
+   document.onmousedown = function(e){ 
+   e.preventDefault(); 
+   var clickedElement = document. 
+   elementFromPoint(e.clientX, e.clientY); 
+   if(clickedElement.className. 
+   indexOf('item')>-1){ 
+   clickedElement.style.opacity = '0.5'; 
+   draggedElement = clickedElement; 
+   } 
+   } 
+   document.onmousemove = function(e){ 
+   if(draggedElement){ 
+   if(!phantomElement){ 
+   phantomElement = 
+   document.createElement('div'); 
+   phantomElement.style.backgroundColor = 
+ draggedElement.style. 
+ backgroundColor; 
+ phantomElement.style.left = 
+ e.pageX-draggedElement. 
+ offsetWidth/2 + 'px'; 
+ phantomElement.style.top = 
+ e.pageY-draggedElement. 
+ offsetHeight/2 + 'px'; 
+ phantomElement.className = 
+ "phantom"; 
+ document.body.appendChild( 
+ phantomElement); 
+ } 
+ else 
+ { 
+ phantomElement.style.left = 
+ e.pageX-phantomElement. 
+ offsetWidth/2 + 'px'; 
+ phantomElement.style.top = 
+ e.pageY-phantomElement. 
+ offsetHeight/2 + 'px'; 
+ phantomElement.style.zIndex = '-1'; 
+ var lowerElement = document. 
+ elementFromPoint(e.clientX, 
+ e.clientY); 
+ phantomElement.style.zIndex = '1'; 
+ 
+ if(lowerElement != null 
+ && lowerElement != draggedElement 
+ && lowerElement.className. 
+ indexOf('item')>-1){ 
+ if(lowerElement == 
+ window.list.lastChild && 
+ e.pageY > (lowerElement.offsetTop+ 
+ lowerElement.offsetHeight/2)){ 
+ window.list. 
+ removeChild(draggedElement); 
+ window.list. 
+ appendChild(draggedElement); 
+ } 
+ else 
+ { 
+ if(e.pageY > 
+ (lowerElement.offsetTop + 
+ lowerElement.offsetHeight/2)){ 
+ if(lowerElement. 
+ previousSibling == 
+ draggedElement){ 
+ window.list. 
+ removeChild( 
+ draggedElement); 
+ window.list.insertBefore( 
+ draggedElement, 
+ lowerElement. 
+ nextSibling); 
+ } 
+ } 
+ else 
+ { 
+ window.list.removeChild( 
+ draggedElement); 
+ window.list.insertBefore( 
+ draggedElement, 
+ lowerElement); 
+ } 
+ } 
+ } 
+ } 
+ } 
+ } 
+ document.onmouseup = function(e){ 
+ if(draggedElement){ 
+ draggedElement.style.opacity = '1'; 
+ draggedElement = false; 
+ } 
+ if(phantomElement){ 
+ document.body.removeChild(phantomElement); 
+ phantomElement = false; 
+ } 
+ } 
+ </script> 
+</body> 
+</html> -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div,p {
+            border: 1px solid navy;
+            display: inline-block;
+            height: 60px;
+            margin: 10px;
+            padding-top: 40px;
+            text-align: center;+
+            width: 100px;
+        }
+        .c1 {
+            background: #eee;
+        }
+        button {
+            margin-left: 25px;
+            margin-top: 30px;
+            width: 90px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="d1" class="c1" name="n1">d1, c1, n1</div>
+    <div id="d2" class="c2" name="n1">d2, c2, n1</div>
+    <div id="d3" class="c1 c2">d3, c1, c2</div>
+    <p id="p1" class="c1">p1, c1</p>
+    <p id="p2" class="c2" name="n1">p2, c2, n1</p>
+<script>
+    function selD1() {
+        var elem = document.getElementById('d1');
+        elem.style.backgroundColor = '#cfc';
+        }
+        function selC1() {
+            var elems =
+            document.getElementsByClassName('c1');
+            for(elem of elems)
+            elem.style.backgroundColor = '#fcc';
+        }
+        function selP() {
+            var elems =
+            document.getElementsByClassName('p');
+            for(elem of elems)
+            elem.style.backgroundColor = '#ccf';
+        }
+        function selN1() {
+            var elems =
+            document.getElementsByClassName('n1');
+            for(elem of elems)
+            elem.style.backgroundColor = '#bef';
+        }
+        function clr() {
+            var elems =
+            document.querySelectorAll('div,p');
+            for(elem of elems)
+            elem.style.backgroundColor = '#eee';
+        }
+</script>
+</body>
+</html> -->
+
+<!doctype html> 
+<html> 
+<head> 
+ <style> 
+ div, p { 
+ border: 1px solid navy; 
+ display: inline-block; 
+ height: 60px; 
+ margin: 10px; 
+ padding-top: 40px; 
+ text-align: center; 
+ width: 100px; 
+ } 
+ .c1 { 
+ background: #eee; 
+ } 
+ button { 
+ margin-left: 25px; 
+ margin-top: 30px; 
+ width: 90px; 
+ } 
+ </style> 
+</head> 
+<body> 
+ <div id="d1" class="c1" name="n1">d1, c1, n1</div> 
+ <div id="d2" class="c2" name="n1">d2, c2, n1</div> 
+ <div id="d3" class="c1 c2">d3, c1 c2</div> 
+ <p id="p1" class="c1">p1, c1</p> 
+ <p id="p2" class="c2" name="n1">p2, c2, n1</p> 
+ <br> 
+ <button onclick="selD1()">id = d1</button> 
+ <button onclick="selC1()">class = c1</button> 
+ <button onclick="selP()">tag = P</button> 
+ <button onclick="selN1()">name = n1</button> 
+ <button onclick="clr()">Clear</button> 
+ <script> 
+ function selD1() { 
+ var elem = document.getElementById("d1"); 
+ elem.style.backgroundColor = "#cfc"; 
+ } 
+ function selC1() { 
+ var elems = 
+ document.getElementsByClassName("c1"); 
+ for(elem of elems) 
+ elem.style.backgroundColor = "#fcc"; 
+ } 
+ function selP() { 
+ var elems = 
+ document.getElementsByTagName("p"); 
+ for(elem of elems) 
+ elem.style.backgroundColor = "#ccf"; 
+ } 
+ function selN1() { 
+ var elems = 
+ document.getElementsByName("n1"); 
+ for(elem of elems) 
+ elem.style.backgroundColor = "#bef"; 
+ } 
+ function clr() { 
+ var elems = 
+ document.querySelectorAll("div,p"); 
+ for(elem of elems) 
+ elem.style.backgroundColor = "#eee"; 
+ } 
+ </script> 
+</body> 
+</html>

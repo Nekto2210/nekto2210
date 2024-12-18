@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Selection demo</title>
-</head>
+
 <!-- <body onkeypress="keyHandler(event)">
 <h1>Text selection demo</h1>
 <p>if you find some mistakes on pagge<br>
@@ -31,7 +31,7 @@
         }
 </script>   
 </body> -->
-<body>
+<!-- <body>
     <input type="checkbox"/>
     Mark <input type="checkbox"/>
     selection <input type="checkbox"/>
@@ -58,7 +58,7 @@
      } 
      var range = document.createRange();
      range.setStartAfter(checkedBoxes[0]);
-     range.setStartBeforedBoxes[1]);
+     range.setEndBefore(checkedBoxes[1]);
      var span = document.createElement('SPAN');
      span.style.backgroundColor = 'aqua';
      range.surroundContents(span);
@@ -67,5 +67,42 @@
 
      }
      </script>
+</body> -->
+<style>
+    #copyContainer {
+        position: absolute;
+        left: -1000px;
+    }
+    textarea {
+        height: 100px;
+        width: 300px;
+    }
+</style>
+</head>
+<body>
+    Select any part of this page and copy it. <br>
+    Paste it in any other program or try to paste here:
+    <br>
+    <textarea></textarea>
+    <div id="copyContainer"></div>
+    <script>
+        document.addEventListener('copy',
+            copyHandler);
+            var storedRange = document.createRange();
+            function copyHandler() {
+                var sel = document.getSelection();
+                storedRange.setStart(sel.anchorNode,sel.acnhorOffset);
+                storedRange.setEnd(sel.focusNode,sel.focusOffset);
+                var txt = sel.toString() +
+                '(Copied from js4_20.html)';
+                copyContainer.innerHTML = txt;
+                sel.selectAllChildren(copyContainer);
+                setTimeout(function(){
+                    var sel = document.getSelection();
+                    sel.removeAllRanges();
+                    sell.addRange(storedRange)
+                },100);
+            }
+    </script>
 </body>
 </html>

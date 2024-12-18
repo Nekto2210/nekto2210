@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selection demo</title>
+</head>
+<!-- <body onkeypress="keyHandler(event)">
+<h1>Text selection demo</h1>
+<p>if you find some mistakes on pagge<br>
+<i>selectt them and press ctrl-Enter</i></p>
+<p id="out"></p>
+<script>
+    function keyHandler(e) {
+    if(e.ctrlKey && (e.key=="Enter" ||
+        e.code=="Enter")){
+    var sel = document.getSelection();
+    var msg = '';
+    msg += 'Selection starts at'+
+    sel.anchorOffset +
+    'symbol of node <br>';
+    msg += '<b>' + sel.anchorNode.data +
+        '</b><br>';
+        msg += 'Selection ends at' +
+        sel.focusOffset +
+        'symbol of node <br>';
+        msg += 'selected string is: <b>' +
+            sel.toString()+'</b>';
+            out.innerHTML = msg;
+        }
+        }
+</script>   
+</body> -->
+<body>
+    <input type="checkbox"/>
+    Mark <input type="checkbox"/>
+    selection <input type="checkbox"/>
+    ranges <input type="checkbox"/>
+    by <input type="checkbox"/>
+    checking <input type="checkbox"/>
+    boxes <input type="checkbox"/>
+    between <input type="checkbox"/>
+    the <input type="checkbox"/>
+    words <input type="checkbox"/>
+    <br>
+    <input type="button"
+     value="Done"
+     onclick="makeSelecetion()"/>
+     <p id="out"></p>
+     <script>
+     function makeSelecetion() {
+     var checkedBoxes =
+     document.querySelectorAll(
+     "[type='checkbox']:checked");
+     if(checkedBoxes.length !=2) {
+     out.innerHTML = 'You should check exactly 2 boxes: start and finish of selection';
+     return;
+     } 
+     var range = document.createRange();
+     range.setStartAfter(checkedBoxes[0]);
+     range.setStartAfter(checkedBoxes[1]);
+     var span = document.createElement('SPAN');
+     span.style.backgroundColor = 'aqua';
+     range.surroundContents(span);
+     out.innerHTML = 'Selected text:<br>'+
+     range.toString();
+
+     }
+     </script>
+</body>
+</html>
